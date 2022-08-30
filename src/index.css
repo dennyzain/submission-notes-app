@@ -10,7 +10,7 @@ body {
 }
 @layer base {
   h1 {
-    @apply text-2xl;
+    @apply text-2xl font-extrabold;
   }
 }
 
