@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import EmptyNotes from '../atoms/EmptyNotes';
 import CardNote from '../molecules/CardNote';
-import { getInitialData } from '../../utils';
 
-export default function ListNotes({ isArchiveList, archive, notes, handleArchive, handleDelete }) {
+export default function ListNotes({
+  isArchiveList, archive, notes, handleArchive, handleDelete,
+}) {
   if (isArchiveList) {
     return (
       <div className="py-8">

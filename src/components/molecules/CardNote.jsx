@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { showFormattedDate } from '../../utils';
 
 export default function CardNote({
@@ -6,7 +6,6 @@ export default function CardNote({
   title,
   body,
   createdAt,
-  archived,
   handleDelete,
   handleArchive,
 }) {
@@ -21,12 +20,14 @@ export default function CardNote({
       </div>
       <div className="flex col-span-2 row-start-3 items-center justify-around">
         <button
+          type="button"
           onClick={() => handleArchive(id)}
           className="border-2 border-black px-2 transition-all hover:shadow-[12px_12px_0px_0px_orange]"
         >
           <p>Archive</p>
         </button>
         <button
+          type="button"
           onClick={() => handleDelete(id)}
           className="border-2 border-black px-2 transition-all hover:shadow-[12px_12px_0px_0px_red]"
         >
