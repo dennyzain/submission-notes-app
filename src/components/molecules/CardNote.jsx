@@ -10,17 +10,11 @@ export default function CardNote({
   handleDelete,
   handleArchive,
 }) {
-  const [state, setState] = useState(false);
-  console.log(state, 'boolean show more');
-
   return (
-    <div className="w-[250px] grid grid-cols-2 grid-rows-[3fr_30px_50px] transition-all border-2 py-3 px-5 border-black hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)]">
-      <div className="h-[250px] col-span-2">
+    <div className="w-[280px] grid grid-cols-2 grid-rows-[3fr_30px_50px] transition-all border-2 py-3 px-5 border-black hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)]">
+      <div className="h-[300px] col-span-2">
         <h2 className="font-extrabold">{title}</h2>
-        <p>{body.length > 150 ? `${body.substring(70)}...` : body}</p>
-        <button className="font-bold" onClick={() => setState(!state)}>
-          show more
-        </button>
+        <p>{body}</p>
       </div>
       <div className="col-span-2">
         <p>{showFormattedDate(createdAt)}</p>
