@@ -19,6 +19,7 @@ export default function CardNote({
         <p>{showFormattedDate(createdAt)}</p>
       </div>
       <div className="flex col-span-2 row-start-3 items-center justify-around">
+        { handleArchive && (
         <button
           type="button"
           onClick={() => handleArchive(id)}
@@ -26,6 +27,7 @@ export default function CardNote({
         >
           <p>Archive</p>
         </button>
+        )}
         <button
           type="button"
           onClick={() => handleDelete(id)}

@@ -14,12 +14,4 @@ body {
   }
 }
 
-@layer components {
-  .navbar {
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 0;
-    grid-template-columns: 5fr 1fr 1fr;
-  }
-}
+

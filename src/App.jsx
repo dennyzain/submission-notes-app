@@ -10,8 +10,7 @@ export default function App() {
   const [content, setContent] = useState('');
   const [search, setSearch] = useState('');
   const [notes, setNotes] = useState(getInitialData());
-  const [archive, setArchive] = useState([]);
-  const [isArchiveList, setIsArchiveList] = useState(false);
+  const [isArchivedList, setArchivedList] = useState(false);
 
   const handleContent = ({ currentTarget }) => setContent(currentTarget.value);
   const handleTitle = ({ currentTarget }) => setTitle(currentTarget.value);
@@ -21,45 +20,49 @@ export default function App() {
     const newNotes = notes.filter((note) => note.id !== id);
     setNotes(newNotes);
   };
+
   const handleArchive = (id) => {
-    console.log(id);
-    console.log(setIsArchiveList);
-    console.log(search);
+    const data = notes.filter((note) => {
+      if (note.id === id) {
+        note.archived = true;
+      }
+      return note;
+    });
+    setNotes(data);
   };
+  const handleArchivedList = () => setArchivedList(!isArchivedList);
   const onSubmit = () => {
-    const createNewNotes = {
+    const createNewNote = {
       id: Date.now(),
       title,
       body: content,
       createdAt: new Date().toISOString(),
       archived: false,
     };
-    const newNotes = [...notes, createNewNotes];
+    const newNotes = [...notes, createNewNote];
     setNotes(newNotes);
     setTitle('');
     setContent('');
   };
-  const onSearch = () => {
-    console.log('sdads');
-  };
+  const onSearch = () => null;
 
   return (
-    <Layout>
-      <SearchForm handleSearch={handleSearch} onSearch={onSearch} />
+    <Layout handleArchivedList={handleArchivedList} isArchivedList={isArchivedList}>
+      <SearchForm handleSearch={handleSearch} onSearch={onSearch} disabled={search.length === 0} />
       <NoteForm
         title={title}
         content={content}
         setContent={handleContent}
         setTitle={handleTitle}
         onSubmit={onSubmit}
+        disabled={!(title && content)}
       />
       <ListNotes
         notes={notes}
-        archive={archive}
+        search={search}
         handleDelete={handleDelete}
         handleArchive={handleArchive}
-        setArchive={setArchive}
-        isArchiveList={isArchiveList}
+        isArchivedList={isArchivedList}
       />
     </Layout>
   );
